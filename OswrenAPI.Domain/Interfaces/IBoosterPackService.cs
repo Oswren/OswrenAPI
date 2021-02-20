@@ -1,6 +1,10 @@
-﻿namespace OswrenAPI.Domain.Interfaces
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace OswrenAPI.Domain.Interfaces
 {
-    interface IBoosterPackService
+    public interface IBoosterPackService
     {
+        public Task<IEnumerable<object>> GetBoosterPack();
     }
 }

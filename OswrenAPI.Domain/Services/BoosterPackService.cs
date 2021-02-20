@@ -1,4 +1,6 @@
 ﻿using OswrenAPI.Domain.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OswrenAPI.Domain.Services
 {
@@ -9,6 +11,11 @@ namespace OswrenAPI.Domain.Services
         public BoosterPackService(ITcgReader tcgBroker)
         {
             _tcgBroker = tcgBroker;
+        }
+
+        public async Task<IEnumerable<object>> GetBoosterPack()
+        {
+            return await _tcgBroker.GetSetlist();
         }
     }
 }
