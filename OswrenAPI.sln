@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI", "OswrenAPI\OswrenAPI.csproj", "{AACCA59D-E961-47B0-B15C-58EE7FD177CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OswrenAPI", "OswrenAPI\OswrenAPI.csproj", "{AACCA59D-E961-47B0-B15C-58EE7FD177CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI.Domain", "OswrenAPI.Domain\OswrenAPI.Domain.csproj", "{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI.MagicTheGathering", "OswrenAPI.MagicTheGathering\OswrenAPI.MagicTheGathering.csproj", "{87F97FFE-8CA4-4441-A088-916ABC519F4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{AACCA59D-E961-47B0-B15C-58EE7FD177CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AACCA59D-E961-47B0-B15C-58EE7FD177CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AACCA59D-E961-47B0-B15C-58EE7FD177CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87F97FFE-8CA4-4441-A088-916ABC519F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F97FFE-8CA4-4441-A088-916ABC519F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F97FFE-8CA4-4441-A088-916ABC519F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F97FFE-8CA4-4441-A088-916ABC519F4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
