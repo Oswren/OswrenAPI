@@ -364,3 +364,5 @@ MigrationBackup/
 FodyWeavers.xsd
 OswrenAPI/obj/*
 OswrenAPI/obj/
+OswrenAPI/obj/debug
+OswrenAPI/obj/debug/*
