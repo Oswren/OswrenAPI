@@ -21,6 +21,7 @@ namespace OswrenAPI.Controllers
         [HttpGet]
         public IEnumerable<object> Get()
         {
+            return null;
         }
     }
 }
