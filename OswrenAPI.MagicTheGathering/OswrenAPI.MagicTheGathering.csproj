@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MtgApiManager.Lib" Version="2.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OswrenAPI.Domain\OswrenAPI.Domain.csproj" />
   </ItemGroup>
 
