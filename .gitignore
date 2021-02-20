@@ -362,7 +362,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-OswrenAPI/obj/*
-OswrenAPI/obj/
-OswrenAPI/obj/debug
-OswrenAPI/obj/debug/*
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
