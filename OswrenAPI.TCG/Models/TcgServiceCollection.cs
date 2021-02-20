@@ -2,7 +2,7 @@
 using OswrenAPI.Domain.Interfaces;
 using RestSharp;
 
-namespace OswrenAPI.TCG
+namespace OswrenAPI.TCG.Models
 {
     public static class TcgServiceCollection
     {

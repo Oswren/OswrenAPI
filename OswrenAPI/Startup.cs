@@ -4,15 +4,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using OswrenAPI.TCG;
+using OswrenAPI.TCG.Models;
 
 namespace OswrenAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -26,6 +30,7 @@ namespace OswrenAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OswrenAPI", Version = "v1" });
             });
+            services.Configure<BrokerConfig>(Configuration.GetSection("BrokerConfig"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
