@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OswrenAPI", "OswrenAPI\Oswr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI.Domain", "OswrenAPI.Domain\OswrenAPI.Domain.csproj", "{3C750E5C-3AD9-465D-AB74-8080FEFCF62A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI.MagicTheGathering", "OswrenAPI.MagicTheGathering\OswrenAPI.MagicTheGathering.csproj", "{87F97FFE-8CA4-4441-A088-916ABC519F4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OswrenAPI.TCG", "OswrenAPI.TCG\OswrenAPI.TCG.csproj", "{87F97FFE-8CA4-4441-A088-916ABC519F4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
