@@ -7,5 +7,6 @@ namespace OswrenAPI.Domain.Interfaces
     public interface ITradingCardService
     {
         public Task<IEnumerable<TcgSet>> GetTcgSets();
+        public Task<IEnumerable<TcgCard>> GetTcgCardsBySet(string set);
     }
 }

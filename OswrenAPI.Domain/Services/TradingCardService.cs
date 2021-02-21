@@ -18,5 +18,10 @@ namespace OswrenAPI.Domain.Services
         {
             return await _tcgBroker.GetSetlist();
         }
+
+        public async Task<IEnumerable<TcgCard>> GetTcgCardsBySet(string set)
+        {
+            return await _tcgBroker.GetMTGCardList(set);
+        }
     }
 }

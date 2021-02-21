@@ -21,12 +21,26 @@ namespace OswrenAPI.Controllers
             _tradingCardService = tradingCardService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TcgSet>>> Get()
+        [HttpGet("sets")]
+        public async Task<ActionResult<IEnumerable<TcgSet>>> GetSets()
         {
             try
             {
                 return Ok(await _tradingCardService.GetTcgSets());
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning("Request failed when fetching sets: ", e);
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("cards/{set}")]
+        public async Task<ActionResult<IEnumerable<TcgSet>>> GetCardsForSet(string set)
+        {
+            try
+            {
+                return Ok(await _tradingCardService.GetTcgCardsBySet(set));
             }
             catch (Exception e)
             {
