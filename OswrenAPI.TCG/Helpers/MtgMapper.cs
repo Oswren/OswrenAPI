@@ -24,7 +24,7 @@ namespace OswrenAPI.TCG.Helpers
                 );
             }
 
-            return mappedSets.OrderBy(result => result.ReleaseDate).ToList();
+            return mappedSets.OrderBy(mappedSet => mappedSet.ReleaseDate).ToList();
         }
 
         public static List<Domain.Models.TcgCard> MapCardList(List<MtgCard> cardList)
@@ -41,12 +41,12 @@ namespace OswrenAPI.TCG.Helpers
                         Text = card.Text,
                         Rarity = card.Rarity,
                         Set = card.Set,
-                        SetNumber = card.Number
+                        SetNumber = card.Number + $"/{cardList.Count}"
                     }
                 );
             }
 
-            return mappedCards;
+            return mappedCards.OrderBy(mappedCard => mappedCard.SetNumber).ToList();
         }
     }
 }

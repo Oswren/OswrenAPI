@@ -44,7 +44,7 @@ namespace OswrenAPI.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogWarning("Request failed when fetching sets: ", e);
+                _logger.LogWarning($"Request failed when fetching cards for set '{set}': ", e);
                 return NotFound();
             }
         }
