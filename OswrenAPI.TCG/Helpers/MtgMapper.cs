@@ -1,5 +1,6 @@
 ﻿using OswrenAPI.TCG.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OswrenAPI.TCG.Helpers
 {
@@ -7,7 +8,7 @@ namespace OswrenAPI.TCG.Helpers
     {
         public static List<Domain.Models.TcgSet> MapSetLists(List<MtgSet> setList)
         {
-            List<Domain.Models.TcgSet> resultSet = new List<Domain.Models.TcgSet>();
+            var resultSet = new List<Domain.Models.TcgSet>();
             foreach (var set in setList)
             {
                 resultSet.Add
@@ -22,7 +23,7 @@ namespace OswrenAPI.TCG.Helpers
                 );
             }
 
-            return resultSet;
+            return resultSet.OrderBy(result => result.ReleaseDate).ToList();
         }
     }
 }

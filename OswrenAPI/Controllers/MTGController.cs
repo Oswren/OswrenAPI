@@ -13,12 +13,12 @@ namespace OswrenAPI.Controllers
     public class MTGController : ControllerBase
     {
         private readonly ILogger<MTGController> _logger;
-        private readonly IBoosterPackService _boosterService;
+        private readonly ITradingCardService _tradingCardService;
 
-        public MTGController(ILogger<MTGController> logger, IBoosterPackService boosterService)
+        public MTGController(ILogger<MTGController> logger, ITradingCardService tradingCardService)
         {
             _logger = logger;
-            _boosterService = boosterService;
+            _tradingCardService = tradingCardService;
         }
 
         [HttpGet]
@@ -26,7 +26,7 @@ namespace OswrenAPI.Controllers
         {
             try
             {
-                return Ok(await _boosterService.GetBoosterPack());
+                return Ok(await _tradingCardService.GetTcgSets());
             }
             catch (Exception e)
             {
