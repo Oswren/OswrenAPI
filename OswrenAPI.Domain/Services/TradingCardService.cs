@@ -7,7 +7,7 @@ namespace OswrenAPI.Domain.Services
 {
     public class TradingCardService : ITradingCardService
     {
-        public ITcgReader _tcgBroker;
+        private readonly ITcgReader _tcgBroker;
 
         public TradingCardService(ITcgReader tcgBroker)
         {

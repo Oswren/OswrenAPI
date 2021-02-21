@@ -47,7 +47,8 @@ namespace OswrenAPI.TCG.Helpers
                             Set = card.Set,
                             SetNumber = parsedNumber,
                             SetNumberString = parsedNumber + $"/{cardList.Count}",
-                            ImageUrl = card.ImageUrl
+                            ImageUrl = card.ImageUrl,
+                            Type = card.Type
                         }
                     );
                 }   

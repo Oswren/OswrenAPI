@@ -10,5 +10,7 @@
         public string Rarity { get; set; }
         public string SetNumberString { get; set; }
         public string ImageUrl { get; set; }
+        public string Type { get; set; }
+        public bool? Foil { get; set; }
     }
 }

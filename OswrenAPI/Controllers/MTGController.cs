@@ -14,11 +14,13 @@ namespace OswrenAPI.Controllers
     {
         private readonly ILogger<MTGController> _logger;
         private readonly ITradingCardService _tradingCardService;
+        private readonly IBoosterPackService _boosterPackService;
 
-        public MTGController(ILogger<MTGController> logger, ITradingCardService tradingCardService)
+        public MTGController(ILogger<MTGController> logger, ITradingCardService tradingCardService, IBoosterPackService boosterPackService)
         {
             _logger = logger;
             _tradingCardService = tradingCardService;
+            _boosterPackService = boosterPackService;
         }
 
         [HttpGet("sets")]
@@ -45,7 +47,21 @@ namespace OswrenAPI.Controllers
             catch (Exception e)
             {
                 _logger.LogWarning($"Request failed when fetching cards for set '{set}': ", e);
-                return NotFound();
+                return BadRequest();
+            }
+        }
+
+        [HttpGet("booster/{set}")]
+        public async Task<ActionResult<IEnumerable<TcgSet>>> GetBoosterPackForSet(string set)
+        {
+            try
+            {
+                return Ok(await _boosterPackService.GetBoosterPackForSet(set));
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning($"Request failed when fetching booster pack for set '{set}': ", e);
+                return BadRequest();
             }
         }
     }
