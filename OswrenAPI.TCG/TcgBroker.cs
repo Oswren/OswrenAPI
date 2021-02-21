@@ -41,7 +41,7 @@ namespace OswrenAPI.TCG
                 var restRequest = new RestRequest("cards").AddParameter("set", set).AddParameter("page", ++page);
                 var requestResult = await _restClient.GetAsync<MtgCards>(restRequest).ConfigureAwait(false);
 
-                cardCount = requestResult.Cards != null ? requestResult.Cards.Count : cardCount;
+                cardCount = requestResult.Cards != null ? requestResult.Cards.Count : 0;
 
                 if(cardCount > 0)
                 {
