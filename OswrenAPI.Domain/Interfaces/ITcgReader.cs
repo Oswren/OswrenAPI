@@ -5,6 +5,6 @@ namespace OswrenAPI.Domain.Interfaces
 {
     public interface ITcgReader
     {
-        public Task<IEnumerable<object>> GetSetlist();
+        public Task<IEnumerable<Domain.Models.TcgSet>> GetSetlist();
     }
 }

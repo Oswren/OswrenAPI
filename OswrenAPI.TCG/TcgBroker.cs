@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using OswrenAPI.Domain.Interfaces;
+using OswrenAPI.TCG.Helpers;
 using OswrenAPI.TCG.Models;
 using RestSharp;
 using System;
@@ -18,11 +19,13 @@ namespace OswrenAPI.TCG
             _restClient.BaseUrl = new Uri(config.Value.MagicTheGatheringAPIRoot);
         }
 
-        public async Task<IEnumerable<object>> GetSetlist()
+        public async Task<IEnumerable<Domain.Models.TcgSet>> GetSetlist()
         {
             var restRequest = new RestRequest("sets");
-            return await _restClient.GetAsync<IEnumerable<object>>(restRequest).ConfigureAwait(false);
-        }
+            
+            var result = await _restClient.GetAsync<MtgSets>(restRequest).ConfigureAwait(false);
 
+            return MtgMapper.MapSetLists(result.Sets);
+        }
     }
 }

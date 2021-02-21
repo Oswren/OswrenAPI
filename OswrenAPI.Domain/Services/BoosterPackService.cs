@@ -1,4 +1,5 @@
 ﻿using OswrenAPI.Domain.Interfaces;
+using OswrenAPI.Domain.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace OswrenAPI.Domain.Services
             _tcgBroker = tcgBroker;
         }
 
-        public async Task<IEnumerable<object>> GetBoosterPack()
+        public async Task<IEnumerable<TcgSet>> GetBoosterPack()
         {
             return await _tcgBroker.GetSetlist();
         }
