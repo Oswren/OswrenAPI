@@ -6,7 +6,9 @@
         public string Name { get; set; }
         public string Text { get; set; }
         public string Set { get; set; }
-        public string SetNumber { get; set; }
+        public int SetNumber { get; set; }
         public string Rarity { get; set; }
+        public string SetNumberString { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

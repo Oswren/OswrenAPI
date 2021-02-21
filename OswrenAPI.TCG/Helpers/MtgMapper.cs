@@ -32,18 +32,25 @@ namespace OswrenAPI.TCG.Helpers
             var mappedCards = new List<Domain.Models.TcgCard>();
             foreach(var card in cardList)
             {
-                mappedCards.Add
-                (
-                    new Domain.Models.TcgCard
-                    {
-                        Id = card.Id,
-                        Name = card.Name,
-                        Text = card.Text,
-                        Rarity = card.Rarity,
-                        Set = card.Set,
-                        SetNumber = card.Number + $"/{cardList.Count}"
-                    }
-                );
+                var isNonFoilCard = int.TryParse(card.Number, out int parsedNumber);
+
+                if(isNonFoilCard)
+                {
+                    mappedCards.Add
+                    (
+                        new Domain.Models.TcgCard
+                        {
+                            Id = card.Id,
+                            Name = card.Name,
+                            Text = card.Text,
+                            Rarity = card.Rarity,
+                            Set = card.Set,
+                            SetNumber = parsedNumber,
+                            SetNumberString = parsedNumber + $"/{cardList.Count}",
+                            ImageUrl = card.ImageUrl
+                        }
+                    );
+                }   
             }
 
             return mappedCards.OrderBy(mappedCard => mappedCard.SetNumber).ToList();
