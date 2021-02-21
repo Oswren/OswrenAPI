@@ -24,7 +24,6 @@ namespace OswrenAPI.Domain.Services
             var allUncommons = cardList.Where(card => (card.Rarity == "Uncommon")).ToList();
             var allCommons = cardList.Where(card => (card.Rarity == "Common") && !card.Type.Contains("Basic Land")).ToList();
             var allLands = cardList.Where(card => card.Type.Contains("Basic Land") && (card.Rarity != "Rare" && card.Rarity != "Mythic")).ToList();
-            
 
             var randomlyPickedCommons = GetRandomCardsOfTypeFromSet(allCommons, TcgBooster.MtgStandardCommonCount);
             var randomlyPickedUncommons = GetRandomCardsOfTypeFromSet(allUncommons, TcgBooster.MtgStandardUncommonCount);
@@ -32,7 +31,10 @@ namespace OswrenAPI.Domain.Services
             
             var randomlyPickedLandOrFoil = new List<TcgCard>();
 
-            if (!allLands.Any())
+            var foilRandomiser = new Random();
+            var packContainsFoil = foilRandomiser.Next(4) == 1;
+
+            if (!allLands.Any() || packContainsFoil)
             {
                 var foil = true;
                 randomlyPickedLandOrFoil = GetRandomCardsOfTypeFromSet(cardList.ToList(), TcgBooster.MtgStandardLandCount, foil);
