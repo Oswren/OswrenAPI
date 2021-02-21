@@ -368,3 +368,4 @@ _ReSharper.*
 bin
 obj
 packages
+OswrenAPI/.config/dotnet-tools.json
