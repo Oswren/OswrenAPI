@@ -1,4 +1,4 @@
-name: "Build + CodeQL Analysis"
+name: ".NET 5 Build"
 
 on:
   push:
