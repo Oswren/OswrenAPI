@@ -8,6 +8,8 @@ namespace OswrenAPI.Domain.Models
     {
         public static void AddDomainServices(this IServiceCollection services)
         {
+            services.AddSingleton<ITcgCardsCachingService, TcgCardsCachingService>();
+
             services.AddTransient<IBoosterPackService, BoosterPackService>();
             services.AddTransient<ITradingCardService, TradingCardService>();
         }

@@ -14,10 +14,12 @@ namespace OswrenAPI.TCG
     public class TcgBroker : ITcgReader
     {
         private readonly IRestClient _restClient;
+        private readonly ITcgCardsCachingService _cardCachingService;
 
-        public TcgBroker(IRestClient restClient, IOptions<BrokerConfig> config)
+        public TcgBroker(IRestClient restClient, IOptions<BrokerConfig> config, ITcgCardsCachingService cardCachingService)
         {
             _restClient = restClient;
+            _cardCachingService = cardCachingService;
             _restClient.BaseUrl = new Uri(config.Value.MagicTheGatheringAPIRoot);
         }
 
@@ -32,24 +34,37 @@ namespace OswrenAPI.TCG
 
         public async Task<IEnumerable<Domain.Models.TcgCard>> GetMTGCardList(string set)
         {
-            var cardList = new List<MtgCard>();
-            var cardCount = 100;
-            var page = 0;
+            var cachedCards = await _cardCachingService.GetCachedCardsIfPresent(set);
 
-            while (cardCount > 50)
+            if (cachedCards != null)
             {
-                var restRequest = new RestRequest("cards").AddParameter("set", set).AddParameter("page", ++page);
-                var requestResult = await _restClient.GetAsync<MtgCards>(restRequest).ConfigureAwait(false);
-
-                cardCount = requestResult.Cards != null ? requestResult.Cards.Count : 0;
-
-                if(cardCount > 0)
-                {
-                    cardList.AddRange(requestResult.Cards);
-                }
+                return cachedCards;
             }
+            else
+            {
+                var cardList = new List<MtgCard>();
+                var cardCount = 100;
+                var page = 0;
 
-            return MtgMapper.MapCardList(cardList);
+                while (cardCount > 50)
+                {
+                    var restRequest = new RestRequest("cards").AddParameter("set", set).AddParameter("page", ++page);
+                    var requestResult = await _restClient.GetAsync<MtgCards>(restRequest).ConfigureAwait(false);
+
+                    cardCount = requestResult.Cards != null ? requestResult.Cards.Count : 0;
+
+                    if(cardCount > 0)
+                    {
+                        cardList.AddRange(requestResult.Cards);
+                    }
+                }
+
+                var mappedCardList = MtgMapper.MapCardList(cardList);
+
+                _cardCachingService.AddToCache(mappedCardList);
+
+                return mappedCardList;
+            }
         }
     }
 }
