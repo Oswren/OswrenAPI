@@ -6,6 +6,6 @@ namespace OswrenAPI.Domain.Interfaces
 {
     public interface IBoosterPackService
     {
-        public Task<IEnumerable<TcgCard>> GetBoosterPackForSet(string set);
+        public Task<IEnumerable<TcgCard>> GetBoosterPackForSetAsync(string set);
     }
 }

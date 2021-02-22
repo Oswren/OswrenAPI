@@ -14,14 +14,14 @@ namespace OswrenAPI.Domain.Services
             _tcgBroker = tcgBroker;
         }
 
-        public async Task<IEnumerable<TcgSet>> GetTcgSets()
+        public async Task<IEnumerable<TcgSet>> GetTcgSetsAsync()
         {
-            return await _tcgBroker.GetSetlist();
+            return await _tcgBroker.GetSetlistAsync();
         }
 
-        public async Task<IEnumerable<TcgCard>> GetTcgCardsBySet(string set)
+        public async Task<IEnumerable<TcgCard>> GetTcgCardsBySetAsync(string set)
         {
-            return await _tcgBroker.GetMTGCardList(set);
+            return await _tcgBroker.GetMTGCardListAsync(set);
         }
     }
 }

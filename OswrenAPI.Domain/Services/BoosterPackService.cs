@@ -16,9 +16,9 @@ namespace OswrenAPI.Domain.Services
             _tcgBroker = tcgBroker;
         }
 
-        public async Task<IEnumerable<TcgCard>> GetBoosterPackForSet(string set)
+        public async Task<IEnumerable<TcgCard>> GetBoosterPackForSetAsync(string set)
         {
-            var cardList = await _tcgBroker.GetMTGCardList(set);
+            var cardList = await GetNonReferencedListOfCardsAsync(set);
 
             var allRaresAndMythics = cardList.Where(card => (card.Rarity == "Rare") || (card.Rarity == "Mythic")).ToList();
             var allUncommons = cardList.Where(card => (card.Rarity == "Uncommon")).ToList();
@@ -31,10 +31,7 @@ namespace OswrenAPI.Domain.Services
             
             var randomlyPickedLandOrFoil = new List<TcgCard>();
 
-            var foilRandomiser = new Random();
-            var packContainsFoil = foilRandomiser.Next(4) == 1;
-
-            if (!allLands.Any() || packContainsFoil)
+            if (!allLands.Any() || ShouldPackContainFoil())
             {
                 var foil = true;
                 randomlyPickedLandOrFoil = GetRandomCardsOfTypeFromSet(cardList.ToList(), TcgBooster.MtgStandardLandCount, foil);
@@ -45,6 +42,19 @@ namespace OswrenAPI.Domain.Services
             }
 
             return randomlyPickedCommons.Concat(randomlyPickedUncommons).Concat(randomlyPickedRareOrMythic).Concat(randomlyPickedLandOrFoil).ToList();
+        }
+
+        private async Task<List<TcgCard>> GetNonReferencedListOfCardsAsync(string set)
+        {
+            var referencedCardList = await _tcgBroker.GetMTGCardListAsync(set);
+
+            return referencedCardList.Select(card => card.Clone()).ToList();
+        }
+
+        private static bool ShouldPackContainFoil()
+        {
+            var foilRandomiser = new Random();
+            return foilRandomiser.Next(4) == 1;
         }
 
         private static List<TcgCard> GetRandomCardsOfTypeFromSet(List<TcgCard> listOfSpecificCardType, int expectedNumberOfCardsOfType, bool foil = false)

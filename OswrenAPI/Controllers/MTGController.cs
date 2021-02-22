@@ -28,7 +28,7 @@ namespace OswrenAPI.Controllers
         {
             try
             {
-                return Ok(await _tradingCardService.GetTcgSets());
+                return Ok(await _tradingCardService.GetTcgSetsAsync());
             }
             catch (Exception e)
             {
@@ -42,7 +42,7 @@ namespace OswrenAPI.Controllers
         {
             try
             {
-                return Ok(await _tradingCardService.GetTcgCardsBySet(set));
+                return Ok(await _tradingCardService.GetTcgCardsBySetAsync(set));
             }
             catch (Exception e)
             {
@@ -56,7 +56,7 @@ namespace OswrenAPI.Controllers
         {
             try
             {
-                return Ok(await _boosterPackService.GetBoosterPackForSet(set));
+                return Ok(await _boosterPackService.GetBoosterPackForSetAsync(set));
         }
             catch (Exception e)
             {

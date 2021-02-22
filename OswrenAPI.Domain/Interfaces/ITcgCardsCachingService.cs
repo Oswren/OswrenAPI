@@ -7,6 +7,6 @@ namespace OswrenAPI.Domain.Interfaces
     public interface ITcgCardsCachingService
     {
         public void AddToCache(List<TcgCard> setTcgCards);
-        public Task<List<TcgCard>> GetCachedCardsIfPresent(string set);
+        public Task<List<TcgCard>> GetCachedCardsIfPresentAsync(string set);
     }
 }

@@ -28,16 +28,14 @@ namespace OswrenAPI.Domain.Services
             }
         }
 
-        public async Task<List<TcgCard>> GetCachedCardsIfPresent(string set)
+        public async Task<List<TcgCard>> GetCachedCardsIfPresentAsync(string set)
         {
             if (_cardCache.FirstOrDefault(x => x.Set == set.ToUpperInvariant()) != null)
             {
                 return await Task.Run(() => _cardCache.FirstOrDefault(cardList => cardList.Set == set.ToUpperInvariant()).CardList.ToList());
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         private void AddSetCardsToCache(List<TcgCard> setTcgCards)

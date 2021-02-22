@@ -7,6 +7,7 @@ using OswrenAPI.TCG.Models.MTG.Sets;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OswrenAPI.TCG
@@ -23,7 +24,7 @@ namespace OswrenAPI.TCG
             _restClient.BaseUrl = new Uri(config.Value.MagicTheGatheringAPIRoot);
         }
 
-        public async Task<IEnumerable<Domain.Models.TcgSet>> GetSetlist()
+        public async Task<IEnumerable<Domain.Models.TcgSet>> GetSetlistAsync()
         {
             var restRequest = new RestRequest("sets");
             
@@ -32,9 +33,9 @@ namespace OswrenAPI.TCG
             return MtgMapper.MapSetLists(result.Sets);
         }
 
-        public async Task<IEnumerable<Domain.Models.TcgCard>> GetMTGCardList(string set)
+        public async Task<IEnumerable<Domain.Models.TcgCard>> GetMTGCardListAsync(string set)
         {
-            var cachedCards = await _cardCachingService.GetCachedCardsIfPresent(set);
+            var cachedCards = await _cardCachingService.GetCachedCardsIfPresentAsync(set);
 
             if (cachedCards != null)
             {
