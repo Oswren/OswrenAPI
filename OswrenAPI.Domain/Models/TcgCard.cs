@@ -1,4 +1,6 @@
-﻿namespace OswrenAPI.Domain.Models
+﻿using System;
+
+namespace OswrenAPI.Domain.Models
 {
     public class TcgCard
     {
@@ -12,5 +14,22 @@
         public string ImageUrl { get; set; }
         public string Type { get; set; }
         public bool Foil { get; set; }
+
+        public TcgCard Clone()
+        {
+            return new TcgCard
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Text = this.Text,
+                Set = this.Set,
+                SetNumber = this.SetNumber,
+                Rarity = this.Rarity,
+                SetNumberString = this.SetNumberString,
+                ImageUrl = this.ImageUrl,
+                Type = this.Type,
+                Foil = this.Foil
+            };
+        }
     }
 }
