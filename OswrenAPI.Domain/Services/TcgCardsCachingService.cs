@@ -20,7 +20,7 @@ namespace OswrenAPI.Domain.Services
         {
             if (_cardCache.FirstOrDefault(x => x.Set == setTcgCards?[0].Set.ToUpperInvariant()) == null)
             {
-                if(_cardCache.Count >= 20)
+                if(_cardCache.Count >= 100)
                 {
                     _cardCache.Remove(_cardCache.OrderBy(cacheItem => cacheItem.TimeLastRequested).ToList().First());
                 }
