@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OswrenAPI.Domain.Models
+﻿namespace OswrenAPI.Domain.Models
 {
     public class TcgCard
     {
