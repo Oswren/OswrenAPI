@@ -3,6 +3,7 @@
     public class TcgCard
     {
         public string Id { get; set; }
+        public int MultiverseId { get; set; }
         public string Name { get; set; }
         public string Text { get; set; }
         public string Set { get; set; }
@@ -18,6 +19,7 @@
             return new TcgCard
             {
                 Id = this.Id,
+                MultiverseId = this.MultiverseId,
                 Name = this.Name,
                 Text = this.Text,
                 Set = this.Set,

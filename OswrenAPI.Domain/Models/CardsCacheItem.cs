@@ -7,6 +7,6 @@ namespace OswrenAPI.Domain.Models
     {
         public string Set { get; set; }
         public List<TcgCard> CardList { get; set; }
-        public DateTime TimeAdded { get; set; }
+        public DateTime TimeLastRequested { get; set; }
     }
 }

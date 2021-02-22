@@ -63,7 +63,7 @@ namespace OswrenAPI.TCG.Models.MTG.Cards
         public string Layout { get; set; }
 
         [JsonPropertyName("multiverseid")]
-        public int Multiverseid { get; set; }
+        public int MultiverseId { get; set; }
 
         [JsonPropertyName("imageUrl")]
         public string ImageUrl { get; set; }

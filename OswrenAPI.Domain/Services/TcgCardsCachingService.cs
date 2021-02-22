@@ -20,9 +20,9 @@ namespace OswrenAPI.Domain.Services
         {
             if (_cardCache.FirstOrDefault(x => x.Set == setTcgCards?[0].Set.ToUpperInvariant()) == null)
             {
-                if(_cardCache.Count > 9)
+                if(_cardCache.Count >= 20)
                 {
-                    _cardCache.Remove(_cardCache.OrderBy(cacheItem => cacheItem.TimeAdded).ToList().First());
+                    _cardCache.Remove(_cardCache.OrderBy(cacheItem => cacheItem.TimeLastRequested).ToList().First());
                 }
                 AddSetCardsToCache(setTcgCards);
             }
@@ -32,7 +32,10 @@ namespace OswrenAPI.Domain.Services
         {
             if (_cardCache.FirstOrDefault(x => x.Set == set.ToUpperInvariant()) != null)
             {
-                return await Task.Run(() => _cardCache.FirstOrDefault(cardList => cardList.Set == set.ToUpperInvariant()).CardList.ToList());
+                var cacheItem = await Task.Run(() => _cardCache.FirstOrDefault(cardList => cardList.Set == set.ToUpperInvariant()));
+                cacheItem.TimeLastRequested = DateTime.Now;
+
+                return cacheItem.CardList.ToList();
             }
 
             return null;
@@ -46,7 +49,7 @@ namespace OswrenAPI.Domain.Services
                     {
                         Set = setTcgCards[0].Set,
                         CardList = setTcgCards,
-                        TimeAdded = DateTime.Now
+                        TimeLastRequested = DateTime.Now
                     }
                 );
         }

@@ -41,6 +41,7 @@ namespace OswrenAPI.TCG.Helpers
                         new Domain.Models.TcgCard
                         {
                             Id = card.Id,
+                            MultiverseId = card.MultiverseId,
                             Name = card.Name,
                             Text = card.Text,
                             Rarity = card.Rarity,
