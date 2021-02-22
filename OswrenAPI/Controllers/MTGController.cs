@@ -54,15 +54,15 @@ namespace OswrenAPI.Controllers
         [HttpGet("booster/{set}")]
         public async Task<ActionResult<IEnumerable<TcgSet>>> GetBoosterPackForSet(string set)
         {
-            //try
-            //{
+            try
+            {
                 return Ok(await _boosterPackService.GetBoosterPackForSet(set));
-            //}
-            //catch (Exception e)
-            //{
-            //    _logger.LogWarning($"Request failed when fetching booster pack for set '{set}': ", e);
-            //    return BadRequest();
-            //}
+        }
+            catch (Exception e)
+            {
+                _logger.LogWarning($"Request failed when fetching booster pack for set '{set}': ", e);
+                return BadRequest("It's likely that the set that you're looking for does not exist in the MTG API.");
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ namespace OswrenAPI.Domain.Services
 
         public void AddToCache(List<TcgCard> setTcgCards)
         {
-            if (_cardCache.FirstOrDefault(x => x.Set == setTcgCards[0].Set) == null)
+            if (_cardCache.FirstOrDefault(x => x.Set == setTcgCards?[0].Set.ToUpperInvariant()) == null)
             {
                 if(_cardCache.Count > 9)
                 {
@@ -30,9 +30,9 @@ namespace OswrenAPI.Domain.Services
 
         public async Task<List<TcgCard>> GetCachedCardsIfPresent(string set)
         {
-            if (_cardCache.FirstOrDefault(x => x.Set == set) != null)
+            if (_cardCache.FirstOrDefault(x => x.Set == set.ToUpperInvariant()) != null)
             {
-                return await Task.Run(() => _cardCache.FirstOrDefault(cardList => cardList.Set == set).CardList.ToList());
+                return await Task.Run(() => _cardCache.FirstOrDefault(cardList => cardList.Set == set.ToUpperInvariant()).CardList.ToList());
             }
             else
             {
