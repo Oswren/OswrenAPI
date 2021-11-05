@@ -21,10 +21,23 @@ namespace OswrenAPI
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string AllowOrigins = "Origins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowOrigins,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddOptions();
             services.AddTcgServices();
             services.AddDomainServices();
@@ -43,6 +56,8 @@ namespace OswrenAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(AllowOrigins);
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OswrenAPI v1"));
